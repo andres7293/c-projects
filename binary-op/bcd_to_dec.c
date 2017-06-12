@@ -1,3 +1,7 @@
+/*
+Convert number to BCD
+*/
+
 #include "stdio.h"
 
 char getMSN(char number);
