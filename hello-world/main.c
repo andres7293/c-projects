@@ -1,7 +1,6 @@
-#include "print.h"
+#include "stdio.h"
 
-void main(){
-  print("Hola mundo\n\r",13);
+void main(void)
+{
+  printf("Hello world!\n\r");
 }
-
-
