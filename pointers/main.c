@@ -6,7 +6,8 @@ void main(void)
   int variable=5;
   
   //point to variable
-  *ptr=variable;
+  ptr = &variable;
+  variable = 6;
   
   //print the value where ptr points
   printf("The value where *ptr point is : %i\n\r",*ptr);
