@@ -4,16 +4,18 @@
 
 #include "queue.h"
 
-queue_ret_n queueInit (queue_t *queue)
+queue_ret_n queueInit (queue_t *queue,int *array,int size)
 {
   //Init queue
-  queue->Ptr = 0;
+  queue->Queue = array;
+  queue->Ptr   = 0;
+  queue->Size  = size;
   return QUEUE_SUCCESS;
 }
 
 queue_ret_n queuePush (queue_t *queue, int in)
 {
-  if (queue->Ptr < QUEUE_SIZE) {
+  if (queue->Ptr < queue->Size) {
     queue->Queue[queue->Ptr] = in;
     queue->Ptr++;
     return QUEUE_SUCCESS;

@@ -9,8 +9,9 @@ void main (void)
 {
   //Create queue struct
   queue_t queue;
+  int     array[10];
   //Init queue
-  queueInit (&queue);
+  queueInit (&queue,array,10);
   //push values
   for (int i = 0;i < 11 ;i++) {
     queue_ret_n ret;
