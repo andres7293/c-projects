@@ -3,15 +3,21 @@
 
 int main (void) 
 {
-  char buffer[3];
+  char buffer[4];
   ringBuffer_t ringBuffer;
   //Init ring buffer
   ringBufferInit (&ringBuffer,buffer,sizeof(buffer));
   while (1) {
     ringBufferPush (&ringBuffer,'a');
-    char value;
-    ringBufferPop  (&ringBuffer,&value);
-    printf ("%c\n\r",value);
+    ringBufferPush (&ringBuffer,'b');
+    ringBufferPush (&ringBuffer,'c');
+    ringBufferPush (&ringBuffer,'d');
+    int data;
+    if (ringBufferIsData (&ringBuffer,&data) == RINGBUFFER_DATA_AVAILABLE) {
+	    char value;
+	    ringBufferPop  (&ringBuffer,&value);
+	    printf ("%c\n\r",value);
+    }
   }
   return 0;
 }

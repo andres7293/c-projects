@@ -7,10 +7,18 @@ typedef struct {
   int  Head;    // Pointer where current write index is
   int  Tail;    // Pointer where current read index is
   int  Size;    //Size of ring buffer
+  int  Count;
 }ringBuffer_t;
 
-void ringBufferInit (ringBuffer_t *ringbuffer,char *buffer,int size);
-void ringBufferPush (ringBuffer_t *ringbuffer,char in);
-void ringBufferPop  (ringBuffer_t *ringbuffer,char *out);
+typedef enum {
+  RINGBUFFER_SUCCESS,
+  RINGBUFFER_EMPTY,
+  RINGBUFFER_DATA_AVAILABLE
+}ringBuffer_n;
+
+void ringBufferInit   (ringBuffer_t *ringbuffer,char *buffer,int size);
+void ringBufferPush   (ringBuffer_t *ringbuffer,char in);
+void ringBufferPop    (ringBuffer_t *ringbuffer,char *out);
+ringBuffer_n ringBufferIsData (ringBuffer_t *ringbuffer,int *out);
 
 #endif
