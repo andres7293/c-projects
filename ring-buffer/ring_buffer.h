@@ -19,6 +19,6 @@ typedef enum {
 void ringBufferInit   (ringBuffer_t *ringbuffer,char *buffer,int size);
 void ringBufferPush   (ringBuffer_t *ringbuffer,char in);
 void ringBufferPop    (ringBuffer_t *ringbuffer,char *out);
-ringBuffer_n ringBufferIsData (ringBuffer_t *ringbuffer,int *out);
+ringBuffer_n ringBufferIsData (ringBuffer_t *ringbuffer);
 
 #endif

@@ -28,7 +28,7 @@ void ringBufferPush (ringBuffer_t *ringbuffer,char in)
 
 void ringBufferPop  (ringBuffer_t *ringbuffer,char *out)
 {
-if (ringbuffer->Count >= 0 ) {
+if (ringbuffer->Count > 0 ) {
   if (ringbuffer->Tail < ringbuffer->Size) {
 	*out = ringbuffer->Buffer[ringbuffer->Tail];
 	ringbuffer->Tail++;
@@ -44,14 +44,12 @@ if (ringbuffer->Count >= 0 ) {
  }
 }
 
-ringBuffer_n ringBufferIsData (ringBuffer_t *ringbuffer,int *out)
+ringBuffer_n ringBufferIsData (ringBuffer_t *ringbuffer)
 {
   if (ringbuffer->Count > 0) {
-        *out = ringbuffer->Count;
 	return RINGBUFFER_DATA_AVAILABLE;	
   }
   else { 
-	*out = 0;
-	return RINGBUFFER_DATA_AVAILABLE;
+	return RINGBUFFER_EMPTY;
   }
 }
