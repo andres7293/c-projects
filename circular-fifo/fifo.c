@@ -4,7 +4,6 @@ void fifo_init (fifo_t *fifo, uint8_t *buffer, int size) {
 	fifo->buffer = buffer;
 	fifo->head	 = 0;
 	fifo->tail	 = 0;
-	fifo->count	 = 0;
 	fifo->size	 = size;
 }
 
@@ -29,27 +28,23 @@ int fifo_pop (fifo_t *fifo, uint8_t *out, int length) {
 }
 
 static void fifo_pushByte (fifo_t *fifo, uint8_t in) {
-	if (fifo->head <= fifo->size) {
+	if (fifo->head < fifo->size) {
 		fifo->buffer[fifo->head++] = in;
-		fifo->count++;
 	}
 	else {
 		fifo->head = 0;
 		fifo->buffer[fifo->head++] = in;
-		fifo->count++;
 	}
 }
 
 static int fifo_popByte (fifo_t *fifo, uint8_t *out) {
-	if (fifo->tail < fifo->head && fifo->count > 0) {
-		if (fifo->tail <= fifo->size) {
+	if (fifo->tail != fifo->head) {
+		if (fifo->tail < fifo->size) {
 			*out = fifo->buffer[fifo->tail++];
-			fifo->count--;
 		}
 		else {
 			fifo->tail = 0;
 			*out = fifo->buffer[fifo->tail++];
-			fifo->count--;
 		}
 		//bytes written succesfully
 		return 0;

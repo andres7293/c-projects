@@ -8,7 +8,6 @@ typedef struct {
 	uint8_t *buffer;
 	int 	head;
 	int 	tail;
-	int 	count;
 	int 	size;
 }fifo_t;
 
